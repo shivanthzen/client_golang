@@ -187,7 +187,6 @@ func (m *withExemplarsMetric) Write(pb *dto.Metric) error {
 		pb.Counter.Exemplar = m.exemplars[len(m.exemplars)-1]
 	case pb.Histogram != nil:
 		if *pb.Histogram.Schema > math.MinInt32 {
-			exemplars := m.exemplars
 			pb.Histogram.Exemplars = append(pb.Histogram.Exemplars, m.exemplars...)
 		}
 		for _, e := range m.exemplars {
